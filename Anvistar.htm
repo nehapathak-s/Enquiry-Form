@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<script src="JQuery.js"></script>
+	<style>
+		html {
+			
+			background: url("./pics/lappy.jpg") no-repeat center center/cover;
+			opacity: 0.89;
+			z-index: -1;
+
+		}
+
+		.th {
+			text-align: center;
+			font-size: 18px;
+			word-spacing: 1px;
+			padding: 0px;
+		}
+
+		.tbl1 {
+			background-color: #6c97c7bf;
+			border-radius: 5px;
+			border: 3px solid #1e8ec05e;
+			margin: 22px;
+			padding: 1px;
+			font-family: math;
+			word-spacing: 3px;
+			box-shadow: black;
+			font-weight: bolder;
+			box-shadow: 31px 21px 6px black;
+		}
+
+		.tbl2 {
+			border: 7px solid #36c5ae8c;
+			background-color: #87b8f6a3;
+			/* word-spacing: -3px; */
+			/* color: #060605; */
+			align-items: center;
+			font-weight: bolder;
+			font-family: math;
+			box-shadow: 25px 23px 6px black;
+			margin: 20px;
+			margin-bottom: 60px
+		}
+
+		#tablehead {
+			border: 2px solid #605e3ad4;
+			background-color: #71861545;
+			margin: 0px;
+			padding: 13px;
+			font-weight: bolder;
+			font-size: 27px;
+			box-shadow: 19px 7px 3px black;
+		}
+
+		.btn {
+			border: 2px solid #102322;
+			border-radius: 5px;
+			background-color: #352e72e6;
+			padding: 5px;
+			color: ghostwhite;
+			font-weight: bold;
+		}
+
+		.box {
+			background-color: #764c4c70;
+			border-radius: 7px;
+			box-shadow: 3px 4px 1px black;
+		}
+
+		#r1,
+		#r2,
+		#r3,
+		#r4 {
+			border: 2px solid red;
+		}
+	</style>
+	<script type="text/javascript">
+
+		$(document).ready(function () {
+			$("#R5").hide();
+			$("#r5").click(function(){
+				$("#R5").fadeIn(100);
+			})
+
+			$("#R1, #R2, #R3").hide();
+			$("#r1").click(function () {
+				$("#R1").show(1000);
+				$("#R2").hide(1000);
+				$("#R3").hide(1000);
+			});
+
+			$("#r2").click(function () {
+				$("#R1").hide(1000);
+				$("#R2").show(1000);
+				$("#R3").hide(1000);
+			});
+
+			$("#r3").click(function () {
+				$("#R1").hide(1000);
+				$("#R2").hide(1000);
+				$("#R3").show(1000);
+			});
+
+			$("#r4").click(function () {
+				$("#R1").show(1000);
+				$("#R2").show(1000);
+				$("#R3").show(1000);
+			});
+
+
+		});
+	</script>
+	<script type="text/javascript">
+		function traning_cost() {
+			var cost = 0;
+			for (i = 0; i <= 11; i++) {
+				if (document.f1.tech[i].checked == true) {
+					cost = cost + parseInt(document.f1.tech[i].value);
+				}
+				document.f1.tcost.value = cost;
+				var GST = cost * 0.18;
+				document.f1.gst.value = GST;
+				document.f1.totcost.value = cost + GST;
+			}
+		}
+
+		function setInstallment() {
+			var cost = document.f1.totcost.value;
+
+			if (cost > 50000) {
+				document.f1.iamt1.value = cost / 5;
+				document.f1.iamt2.value = cost / 5;
+				document.f1.iamt3.value = cost / 5;
+				document.f1.iamt4.value = cost / 5;
+				document.f1.iamt5.value = cost / 5;
+
+
+			}
+			else if (cost > 40000) {
+				document.f1.iamt1.value = cost / 4;
+				document.f1.iamt2.value = cost / 4;
+				document.f1.iamt3.value = cost / 4;
+				document.f1.iamt4.value = cost / 4;
+
+				document.getElementById("irow5").style.display = "none";
+			}
+			else if (cost > 30000) {
+				document.f1.iamt1.value = cost / 3;
+				document.f1.iamt2.value = cost / 3;
+				document.f1.iamt3.value = cost / 3;
+
+
+				document.getElementById("irow4").style.display = "none";
+				document.getElementById("irow5").style.display = "none";
+
+			}
+			else if (cost > 20000) {
+				document.f1.iamt1.value = cost / 2;
+				document.f1.iamt2.value = cost / 2;
+
+
+
+				document.getElementById("irow3").style.display = "none";
+				document.getElementById("irow4").style.display = "none";
+				document.getElementById("irow5").style.display = "none";
+			}
+			else {
+				document.f1.iamt1.value = cost;
+
+				document.getElementById("irow2").style.display = "none";
+				document.getElementById("irow3").style.display = "none";
+				document.getElementById("irow4").style.display = "none";
+				document.getElementById("irow5").style.display = "none";
+
+			}
+		}//end
+	</script>
+
+</head>
+
+<body>
+	<center>
+		<form action="success.html" name="f1">
+			<table cellpadding="7" class="tbl1">
+				<p id="tablehead">
+					Anvistar ITS Pvt Ltd
+				</p>
+				<tr class="th">
+					<td colspan="2">
+						<h2>Training Enquiry Form</h2>
+					</td>
+				</tr>
+				<tr>
+					<td>Candidate Name</td>
+					<td>
+						<input class="box" type="text" name="cname">
+					</td>
+				</tr>
+				<tr>
+					<td>Type of Training</td>
+					<td>
+						<input class="radio" type="radio" name="tot" id="r1" value="job">Job Oriented
+						<input class="radio" type="radio" name="tot" id="r2" value="internship">Internship
+						<input class="radio" type="radio" name="tot" id="r3" value="modular">Modular
+						<input class="radio" type="radio" name="tot" id="r4" value="all">Show All Technology
+					</td>
+				</tr>
+				<tr id="R1">
+					<td>Job Oriented</td>
+					<td>
+						<input type="checkbox" name="tech" value="32000" onclick="traning_cost()">Java Developer FSD
+						<input type="checkbox" name="tech" value="28000" onclick="traning_cost()">PHP Developer FSD
+						<input type="checkbox" name="tech" value="23000" onclick="traning_cost()">Python Developer FSD
+						<input type="checkbox" name="tech" value="22000" onclick="traning_cost()">Oracle Developer
+					</td>
+				</tr>
+				<tr id="R2">
+					<td>Internship</td>
+					<td>
+						<input type="checkbox" name="tech" value="20000" onclick="traning_cost()">Java FSD
+						<input type="checkbox" name="tech" value="18000" onclick="traning_cost()">PHP FSD
+						<input type="checkbox" name="tech" value="17000" onclick="traning_cost()">Python FSD
+						<input type="checkbox" name="tech" value="14000" onclick="traning_cost()">Web Developer
+					</td>
+				</tr>
+				<tr id="R3">
+					<td>Modular</td>
+					<td>
+						<input type="checkbox" name="tech" value="3000" onclick="traning_cost()">C Programming
+						<input type="checkbox" name="tech" value="4000" onclick="traning_cost()">CPP Programming
+						<input type="checkbox" name="tech" value="7000" onclick="traning_cost()">Java Programming
+						<input type="checkbox" name="tech" value="7000" onclick="traning_cost()">Python Programming
+					</td>
+				</tr>
+				<tr>
+					<td>Training Cost</td>
+					<td>
+						<input class="box" type="text" name="tcost">
+					</td>
+				</tr>
+				<tr>
+					<td>GST 18%</td>
+					<td>
+						<input class="box" type="text" name="gst">
+					</td>
+				</tr>
+				<tr>
+					<td>Total cost with GST</td>
+					<td>
+						<input class="box" type="text" name="totcost">
+					</td>
+				</tr>
+
+				<tr id="r5">
+					<td colspan="4">
+						<center>
+							<button type="button" class="btn" onclick="setInstallment()">Set Installment</button>
+						</center>
+					</td>
+				</tr>
+			</table>
+			<br>
+			<table border="1" cellpadding="7" width="60%" class="tbl2" id="R5">
+				<tr>
+					<th>Sr No</th>
+					<th>Date</th>
+					<th>Amount</th>
+					<th>Status</th>
+				</tr>
+				<tr id="irow1">
+					<td align="center">1</td>
+					<td align="center">
+						<input type="date" name="idate1">
+					</td>
+					<td align="center">
+						<input type="number" name="iamt1">
+					</td>
+					<td align="center">
+						<select name="iamtstatus1">
+							<option value="" disabled selected>---Select Status---</option>
+							<option value="PAID">PAID</option>
+							<option value="UNPAID">UNPAID</option>
+						</select>
+					</td>
+				</tr>
+				<tr id="irow2">
+					<td align="center">2</td>
+					<td align="center">
+						<input type="date" name="idate2">
+					</td>
+					<td align="center">
+						<input type="number" name="iamt2">
+					</td>
+					<td align="center">
+						<select name="iamtstatus2">
+							<option value="" disabled selected>---Select Status---</option>
+							<option value="PAID">PAID</option>
+							<option value="UNPAID">UNPAID</option>
+						</select>
+					</td>
+				</tr>
+				<tr id="irow3">
+					<td align="center">3</td>
+					<td align="center">
+						<input type="date" name="idate3">
+					</td>
+					<td align="center">
+						<input type="number" name="iamt3">
+					</td>
+					<td align="center">
+						<select name="iamtstatus3">
+							<option value="" disabled selected>---Select Status---</option>
+							<option value="PAID">PAID</option>
+							<option value="UNPAID">UNPAID</option>
+						</select>
+					</td>
+				</tr>
+				<tr id="irow4">
+					<td align="center">4</td>
+					<td align="center">
+						<input type="date" name="idate4">
+					</td>
+					<td align="center">
+						<input type="number" name="iamt4">
+					</td>
+					<td align="center">
+						<select name="iamtstatus4">
+							<option value="" disabled selected>---Select Status---</option>
+							<option value="PAID">PAID</option>
+							<option value="UNPAID">UNPAID</option>
+						</select>
+					</td>
+				</tr>
+				<tr id="irow5">
+					<td align="center">5</td>
+					<td align="center">
+						<input type="date" name="idate5">
+					</td>
+					<td align="center">
+						<input type="number" name="iamt5">
+					</td>
+					<td align="center">
+						<select name="iamtstatus5">
+							<option value="" disabled selected>---Select Status---</option>
+							<option value="PAID">PAID</option>
+							<option value="UNPAID">UNPAID</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><input type="button" value="Go to Dashboard"></td>
+					<td align="center"><input type="submit" value="Submit Enquiry"></td>
+					<td align="center"><input type="reset" value="Reset"></td>
+					<td align="center"><input type="button" value="Log Out"></td>
+				</tr>
+			</table>
+		</form>
+	</center>
+</body>
+
+</html>
